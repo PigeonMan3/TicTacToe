@@ -51,7 +51,7 @@ namespace TicTacToe
                 case "C":
                     KolomCijfer = 2; break;
                 default:
-                    Environment.Exit(1); break;
+                    Environment.Exit(0); break; 
             }
             Rij -= 1;
             if (_grid[KolomCijfer, Rij].Contains("_") == false)
