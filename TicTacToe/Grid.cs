@@ -53,7 +53,7 @@ namespace TicTacToe
                 default:
                     Environment.Exit(0); break; 
             }
-            Rij -= 1;
+            Rij--;
             if (_grid[KolomCijfer, Rij].Contains("_") == false)
             {
                 Environment.Exit(1);
@@ -64,6 +64,50 @@ namespace TicTacToe
             }
         }
 
+        public int Controle()
+        {
+            int AantalJuistSpeler = 0;
+            int Status = 3; // 0 = bord is vol, 1 = gewonnen, -1 = verloren, 3 == nog geen resultaat
+            
+            //verticale patroon controle
+            for (int i = 0; i < 3; i++)
+            {
+                AantalJuistSpeler = 0;
+                for (int j = 0; j < 3; j++)
+                {
+                    if (_grid[j,i] == "X") 
+                    {
+                        AantalJuistSpeler++;
+                    }                   
+                   
+                }
+                if (AantalJuistSpeler == 3)
+                {
+                    Status = 1;
+                    break;
+                }
+            }
+
+            //horizontale controle
+            for (int i = 0; i < 3; i++)
+            {
+                AantalJuistSpeler = 0;
+                for (int j = 0; j < 3; j++)
+                {
+                    if (_grid[i, j] == "X")
+                    {
+                        AantalJuistSpeler++;
+                    }
+                }
+                if (AantalJuistSpeler == 3)
+                {
+                    Status = 1;
+                    break;
+                }
+            }
+
+            return Status;
+        }
 
 
     }
