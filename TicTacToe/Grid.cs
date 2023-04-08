@@ -67,6 +67,7 @@ namespace TicTacToe
         public int Controle()
         {
             int AantalJuistSpeler = 0;
+            int AantalJuistComputer = 0;
             int Status = 3; // 0 = bord is vol, 1 = gewonnen, -1 = verloren, 3 == nog geen resultaat
             
             //verticale patroon controle
@@ -78,13 +79,22 @@ namespace TicTacToe
                     if (_grid[j,i] == "X") 
                     {
                         AantalJuistSpeler++;
-                    }                   
-                   
+                    }
+                    else if (_grid[j, i] == "O")
+                    {
+                        AantalJuistComputer++;
+                    }
+
                 }
                 if (AantalJuistSpeler == 3)
                 {
                     Status = 1;
                     break;
+                }
+                else if (AantalJuistComputer == 3)
+                { 
+                    Status = -1; 
+                    break; 
                 }
             }
 
@@ -98,12 +108,69 @@ namespace TicTacToe
                     {
                         AantalJuistSpeler++;
                     }
+                    else if (_grid[i, j] == "O")
+                    {
+                        AantalJuistComputer++;
+                    }
                 }
                 if (AantalJuistSpeler == 3)
                 {
                     Status = 1;
                     break;
                 }
+                else if (AantalJuistComputer == 3)
+                {
+                    Status = -1;
+                    break;
+                }
+            }
+
+            //diagonale controle (LB --> RO)
+            for (int i = 0; i < 3; i++)
+            {
+                int j = 0;
+                if (_grid[j, i] == "X")
+                {
+                    AantalJuistSpeler++;
+                }
+                else if (_grid[j, i] == "O")
+                {
+                    AantalJuistComputer++;
+                }
+                j++;
+
+            }
+            if (AantalJuistSpeler == 3)
+            {
+                Status = 1; 
+            }
+            else if (AantalJuistComputer == 3)
+            {
+                Status = -1;
+            }
+
+            //diagonale controle (RB --> LO)
+            for (int i = 0; i < 3; i++)
+            {
+                int j = 2;
+                if (_grid[j, i] == "X")
+                {
+                    AantalJuistSpeler++;
+                }
+                else if (_grid[j, i] == "O")
+                {
+                    AantalJuistComputer++;
+                }
+                j--;
+
+            }
+            if (AantalJuistSpeler == 3)
+            {
+                Status = 1;
+            }
+            else if (AantalJuistComputer == 3)
+            {
+                Status = -1;
             }
 
             return Status;
