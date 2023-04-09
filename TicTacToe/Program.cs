@@ -48,5 +48,6 @@ while (Spelen == true)
             break;
     }
 }
+Console.WriteLine(grid.GridPrinten());
 Console.WriteLine("Dankuwel om te spelen tot later !!");
 Console.ReadLine();

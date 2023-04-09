@@ -209,6 +209,8 @@ namespace TicTacToe
             int j;
 
             //verticaal
+            //Console.WriteLine("1");
+            //Thread.Sleep(1000);
             for (int i = 0; i < 3; i++)
             {
                 Aantal = 0;
@@ -227,6 +229,8 @@ namespace TicTacToe
                 }
             }
             //horizontaal
+            //Console.WriteLine("2");
+            //Thread.Sleep(1000);
             Aantal = 0;
             for (int i = 0; i < 3; i++)
             {
@@ -248,6 +252,8 @@ namespace TicTacToe
             }
             //diagonaal
             //diagonale controle (LB --> RO)
+            //Console.WriteLine("3");
+            //Thread.Sleep(1000);
             Aantal = 0;
             j = 0;
             int k;
@@ -267,6 +273,8 @@ namespace TicTacToe
                 WinPossibility = true;
             }
             ////////////////////diagonaal2
+            //Console.WriteLine("4");
+            //Thread.Sleep(1000);
             Aantal = 0;
             j = 2;
             k = 0;
@@ -287,7 +295,8 @@ namespace TicTacToe
 
 
             ////////////end
-            if (WinPossibility == false && _grid[Kolom,Rij] != "_")
+            //Console.WriteLine(Kolom + " " + Rij);
+            if (WinPossibility == false || _grid[Kolom,Rij] != "_")
             {
                do
                {
@@ -295,10 +304,11 @@ namespace TicTacToe
                     Rij = random.Next(0, 3);
                }while (_grid[Kolom, Rij] != "_");
             }
+            //Console.WriteLine(Kolom + " " + Rij);
             _grid[Kolom, Rij] = "O"; 
 
 
-        }
+        } //index out of bounds ???
 
 
     }
