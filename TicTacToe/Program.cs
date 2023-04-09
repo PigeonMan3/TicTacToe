@@ -8,6 +8,7 @@ Grid grid = new Grid();
 while (Spelen == true)
 {
     Console.Clear();
+    Console.WriteLine(grid.Controle());
     Console.WriteLine(grid.GridPrinten());
     Console.WriteLine("In welk vakje Wil je uw X zetten ?");
     PositieInvoer = Console.ReadLine();

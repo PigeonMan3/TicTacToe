@@ -53,7 +53,7 @@ namespace TicTacToe
                 default:
                     Environment.Exit(0); break; 
             }
-            Rij -= 1;
+            Rij--;
             if (_grid[KolomCijfer, Rij].Contains("_") == false)
             {
                 Environment.Exit(1);
@@ -64,6 +64,125 @@ namespace TicTacToe
             }
         }
 
+        public int Controle()
+        {
+            int AantalJuistSpeler = 0;
+            int AantalJuistComputer = 0;
+            int Status = 3; // 0 = bord is vol, 1 = gewonnen, -1 = verloren, 3 == nog geen resultaat
+            
+            //verticale patroon controle
+            for (int i = 0; i < 3; i++)
+            {
+                AantalJuistSpeler = 0;
+                AantalJuistComputer = 0;
+                for (int j = 0; j < 3; j++)
+                {
+                    if (_grid[j,i] == "X") 
+                    {
+                        AantalJuistSpeler++;
+                    }
+                    else if (_grid[j, i] == "O")
+                    {
+                        AantalJuistComputer++;
+                    }
+
+                }
+                if (AantalJuistSpeler == 3)
+                {
+                    Status = 1;
+                    break;
+                }
+                else if (AantalJuistComputer == 3)
+                { 
+                    Status = -1; 
+                    break; 
+                }
+            }
+
+            //horizontale controle
+            AantalJuistSpeler = 0;
+            AantalJuistComputer = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                AantalJuistSpeler = 0;
+                for (int j = 0; j < 3; j++)
+                {
+                    if (_grid[i, j] == "X")
+                    {
+                        AantalJuistSpeler++;
+                    }
+                    else if (_grid[i, j] == "O")
+                    {
+                        AantalJuistComputer++;
+                    }
+                }
+                if (AantalJuistSpeler == 3)
+                {
+                    Status = 1;
+                    break;
+                }
+                else if (AantalJuistComputer == 3)
+                {
+                    Status = -1;
+                    break;
+                }
+            }
+
+            int Teller;//second teller voor diagonale controle
+            //diagonale controle (LB --> RO)
+            AantalJuistSpeler = 0;
+            AantalJuistComputer = 0;
+            Teller = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                if (_grid[Teller, i] == "X")
+                {
+                    AantalJuistSpeler++;
+                }
+                else if (_grid[Teller, i] == "O")
+                {
+                    AantalJuistComputer++;
+                }
+                Teller++;
+
+            }
+            if (AantalJuistSpeler == 3)
+            {
+                Status = 1; 
+            }
+            else if (AantalJuistComputer == 3)
+            {
+                Status = -1;
+            }
+
+            //diagonale controle (RB --> LO)
+            AantalJuistSpeler = 0;
+            AantalJuistComputer = 0;
+            Teller = 2;
+            for (int i = 0; i < 3; i++)
+            {
+                if (_grid[Teller, i] == "X")
+                {
+                    AantalJuistSpeler++;
+                }
+                else if (_grid[Teller, i] == "O")
+                {
+                    AantalJuistComputer++;
+                }
+                Teller--;
+
+            }
+            if (AantalJuistSpeler == 3)
+            {
+                Status = 1;
+            }
+            else if (AantalJuistComputer == 3)
+            {
+                Status = -1;
+            }
+
+            return Status;
+        }
 
 
     }
