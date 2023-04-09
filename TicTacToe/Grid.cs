@@ -74,6 +74,7 @@ namespace TicTacToe
             for (int i = 0; i < 3; i++)
             {
                 AantalJuistSpeler = 0;
+                AantalJuistComputer = 0;
                 for (int j = 0; j < 3; j++)
                 {
                     if (_grid[j,i] == "X") 
@@ -99,6 +100,8 @@ namespace TicTacToe
             }
 
             //horizontale controle
+            AantalJuistSpeler = 0;
+            AantalJuistComputer = 0;
             for (int i = 0; i < 3; i++)
             {
                 AantalJuistSpeler = 0;
@@ -125,19 +128,22 @@ namespace TicTacToe
                 }
             }
 
+            int Teller;//second teller voor diagonale controle
             //diagonale controle (LB --> RO)
+            AantalJuistSpeler = 0;
+            AantalJuistComputer = 0;
+            Teller = 0;
             for (int i = 0; i < 3; i++)
             {
-                int j = 0;
-                if (_grid[j, i] == "X")
+                if (_grid[Teller, i] == "X")
                 {
                     AantalJuistSpeler++;
                 }
-                else if (_grid[j, i] == "O")
+                else if (_grid[Teller, i] == "O")
                 {
                     AantalJuistComputer++;
                 }
-                j++;
+                Teller++;
 
             }
             if (AantalJuistSpeler == 3)
@@ -150,18 +156,20 @@ namespace TicTacToe
             }
 
             //diagonale controle (RB --> LO)
+            AantalJuistSpeler = 0;
+            AantalJuistComputer = 0;
+            Teller = 2;
             for (int i = 0; i < 3; i++)
             {
-                int j = 2;
-                if (_grid[j, i] == "X")
+                if (_grid[Teller, i] == "X")
                 {
                     AantalJuistSpeler++;
                 }
-                else if (_grid[j, i] == "O")
+                else if (_grid[Teller, i] == "O")
                 {
                     AantalJuistComputer++;
                 }
-                j--;
+                Teller--;
 
             }
             if (AantalJuistSpeler == 3)
