@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks.Dataflow;
@@ -198,26 +199,105 @@ namespace TicTacToe
             return Status;
         }
         
-        public void ComputerZet(int Difficulty)
+        public void ComputerZet()
         {
             Random random = new Random();
-            int Kolom;
-            int Rij;
-            /*
+            int Kolom = 0;
+            int Rij = 0;
+            bool WinPossibility = false;
+            int Aantal;
+            int j;
+
+            //verticaal
             for (int i = 0; i < 3; i++)
             {
-                for (int j = 0; j < 3; j++)
+                Aantal = 0;
+                for (j = 0; j < 3; j++)
                 {
-                    _gridTEST[j, i] = _grid[j, i];
+                    if (_grid[j, i] == "O")
+                    {
+                        Aantal++;
+                    }
+                }
+                if (Aantal == 2)
+                {
+                    Kolom = j;
+                    Rij = i;
+                    WinPossibility = true;
                 }
             }
-            */
-            do
+            //horizontaal
+            Aantal = 0;
+            for (int i = 0; i < 3; i++)
             {
-                Kolom = random.Next(0, 3);
-                Rij = random.Next(0, 3);
-            } while (_grid[Kolom, Rij] != "_");
-            _grid[Kolom, Rij] = "O";
+                Aantal = 0;
+                for (j = 0; j < 3; j++)
+                {
+                    if (_grid[i, j] == "O")
+                    {
+                        Aantal++;
+                    }
+                }
+                if (Aantal == 2)
+                {
+                    Kolom = i;
+                    Rij = j;
+                    WinPossibility = true;
+                }
+
+            }
+            //diagonaal
+            //diagonale controle (LB --> RO)
+            Aantal = 0;
+            j = 0;
+            int k;
+            for (k = 0; k < 3; k++)
+            {
+                if (_grid[j, k] == "O")
+                {
+                    Aantal++;
+                }
+                j++;
+
+            }
+            if (Aantal == 2)
+            {
+                Kolom = j;
+                Rij = k;
+                WinPossibility = true;
+            }
+            ////////////////////diagonaal2
+            Aantal = 0;
+            j = 2;
+            k = 0;
+            for (k = 0; k < 3; k++)
+            {
+                if (_grid[j, k] == "O")
+                {
+                    Aantal++;
+                }
+                j--;
+            }
+            if (Aantal == 2)
+            {
+                Kolom = j;
+                Rij = k;
+                WinPossibility = true;
+            }
+
+
+            ////////////end
+            if (WinPossibility == false && _grid[Kolom,Rij] != "_")
+            {
+               do
+               {
+                    Kolom = random.Next(0, 3);
+                    Rij = random.Next(0, 3);
+               }while (_grid[Kolom, Rij] != "_");
+            }
+            _grid[Kolom, Rij] = "O"; 
+
+
         }
 
 

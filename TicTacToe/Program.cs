@@ -4,11 +4,7 @@ using TicTacToe;
 string PositieInvoer;
 bool Spelen = true;
 int Status;
-int Moeilijkheid;
 
-
-Console.WriteLine("Hoe moeilijk mag het spel zijn ? \n1)makkelijk");
-Moeilijkheid = Convert.ToInt16(Console.ReadLine());
 
 Grid grid = new Grid();
 while (Spelen == true)
@@ -29,14 +25,13 @@ while (Spelen == true)
         goto begin;
     }
 
-    grid.ComputerZet(Moeilijkheid);
+    if (grid.Controle() != 1)
+    {
+        grid.ComputerZet();
+    }
+    
     Console.Clear() ;
     Status = grid.Controle();// 0 = bord is vol, 1 = gewonnen, -1 = verloren, 3 == nog geen resultaat
-
-    Console.WriteLine("De computer: ");
-    Console.WriteLine(grid.GridPrinten() );
-    Console.ReadLine() ;
-
     switch(Status)
     {
         case 0:
