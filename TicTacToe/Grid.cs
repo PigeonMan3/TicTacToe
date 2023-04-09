@@ -10,6 +10,7 @@ namespace TicTacToe
     {
         protected string[,] _grid = new string[3, 3]; // [kolom, rij]
         protected string _uitvoer;
+        protected string[,] _gridTEST = new string[3, 3]; // [kolom, rij]
 
         public Grid()
         {
@@ -195,6 +196,28 @@ namespace TicTacToe
             }
 
             return Status;
+        }
+        
+        public void ComputerZet(int Difficulty)
+        {
+            Random random = new Random();
+            int Kolom;
+            int Rij;
+            /*
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    _gridTEST[j, i] = _grid[j, i];
+                }
+            }
+            */
+            do
+            {
+                Kolom = random.Next(0, 3);
+                Rij = random.Next(0, 3);
+            } while (_grid[Kolom, Rij] != "_");
+            _grid[Kolom, Rij] = "O";
         }
 
 
