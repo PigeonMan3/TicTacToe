@@ -181,6 +181,19 @@ namespace TicTacToe
                 Status = -1;
             }
 
+            int AantalLeeg = 0;
+            foreach (string s in _grid)
+            {
+                if (s == "_")
+                {
+                    AantalLeeg++;
+                }
+            }
+            if (AantalLeeg == 0)
+            {
+                Status = 0;
+            }
+
             return Status;
         }
 
